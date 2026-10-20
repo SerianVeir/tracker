@@ -1,0 +1,34 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Учёт трат</title>
+        <style>
+            body { font-family: sans-serif; margin: 20px; }
+            table { border-collapse: collapse; width: 100%; max-width: 600px; margin-bottom: 20px; }
+            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+            th { background-color: #f4f4f4; }
+            .form-group { margin-bottom: 10px; }
+            nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Мои Расходы</h1>
+            <nav>
+                <a href="/">Главная</a>
+                <a href="/about">О проекте</a>
+            </nav>
+        </header>
+
+        <main>
+            {{template "content" .}}
+        </main>
+
+        <footer style="margin-top: 40px; color: #777;">
+            <p>Учебный проект на Go</p>
+        </footer>
+    </body>
+</html>
+{{end}}
