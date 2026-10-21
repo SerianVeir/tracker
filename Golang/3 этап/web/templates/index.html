@@ -1,0 +1,54 @@
+{{define "content"}}
+<h2>Список трат</h2>
+
+<table border="1" style="width: 100%; text-align: left; border-collapse: collapse; margin-bottom: 20px;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Дата</th>
+            <th>Описание</th>
+            <th>Сумма</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .Expenses}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td>{{.Date.Format "2006-01-02"}}</td>
+            <td>{{.Description}}</td>
+            <td>{{.Amount}} руб.</td>
+            <td>
+                <a href="/edit?id={{.ID}}">Ред.</a>
+
+                <form action="/delete" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button type="submit" onclick="return confirm('Точно удалить эту трату?')">Удал.</button>
+                </form>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" style="text-align: center;">Трат пока неть, Добавьте первую</td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+
+<h3>Добавьте трату</h3>
+<form action="/expenses" method="POST">
+    <div class="form-group">
+        <label>Сумма:</label><br>
+        <input type="number" step="0.01" name="amount" required>
+    </div>
+    <div class="form-group">
+        <label>Описание:</label><br>
+        <input type="text" name="description" required>
+    </div>
+    <div class="form-group">
+        <label>Дата:</label><br>
+        <input type="date" name="date" required>
+    </div>
+    <button type="submit">Добавить</button>
+</form>
+{{end}}

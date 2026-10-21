@@ -1,0 +1,19 @@
+{{define "edit"}}
+<!DOCTYPE html>
+<html>
+    <head><title>Редактирование</title></head>
+    <body>
+        <h2>Редактировать трату</h2>
+        <form action="/update" method="POST">
+            <input type="hidden" name="id" value="{{.ID}}">
+
+            <p>Сумма: <input type="number" step="0.01" name="amount" value="{{.Amount}}" required></p>
+            <p>Описание: <input type="text" name="description" value="{{.Description}}" required></p>
+            <p>Дата: <input type="date" name="date" value="{{.Date.Format "2006-01-02"}}" required></p>
+
+            <button type="submit">Сохранить</button>
+            <a href="/">Отмена</a>
+        </form>
+    </body>
+</html>
+{{end}}
